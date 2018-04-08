@@ -117,4 +117,12 @@ public class TestBase {
     wd.findElement(By.name("group_footer")).clear();
     wd.findElement(By.name("group_footer")).sendKeys(gruopData.getFooter());
   }
+
+  protected void confirmContactDeletion() {
+    wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
+  }
+
+  protected void selectContact() {
+    wd.findElement(By.name("selected[]")).click();
+  }
 }
