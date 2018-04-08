@@ -48,17 +48,6 @@ public class TestBase {
     wd.findElement(By.name("submit")).click();
   }
 
-  protected void fillGroupForm(GroupData groupData) {
-    wd.findElement(By.name("group_name")).click();
-    wd.findElement(By.name("group_name")).clear();
-    wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-    wd.findElement(By.name("group_header")).click();
-    wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-    wd.findElement(By.name("group_footer")).click();
-    wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-  }
 
   protected void initGroupCreation() {
     wd.findElement(By.name("new")).click();
@@ -79,5 +68,53 @@ public class TestBase {
 
   protected void selectGroup() {
     wd.findElement(By.name("selected[]")).click();
+  }
+
+  protected void returnToHomePage() {
+      wd.findElement(By.linkText("home")).click();
+  }
+
+  protected void submitContactCreationForm() {
+      wd.findElement(By.name("submit")).click();
+  }
+
+  protected void editAdressbookEntry() {
+      wd.findElement(By.name("theform")).click();
+  }
+
+  protected void fillContactCreationForm(String user_firstname, String user_lastname, String user_address, String user_phone, String user_email) {
+      wd.findElement(By.name("theform")).click();
+      wd.findElement(By.name("firstname")).click();
+      wd.findElement(By.name("firstname")).clear();
+      wd.findElement(By.name("firstname")).sendKeys(user_firstname);
+      wd.findElement(By.name("lastname")).click();
+      wd.findElement(By.name("lastname")).clear();
+      wd.findElement(By.name("lastname")).sendKeys(user_lastname);
+      wd.findElement(By.name("address")).click();
+      wd.findElement(By.name("address")).clear();
+      wd.findElement(By.name("address")).sendKeys(user_address);
+      wd.findElement(By.name("home")).click();
+      wd.findElement(By.name("home")).clear();
+      wd.findElement(By.name("home")).sendKeys(user_phone);
+      wd.findElement(By.name("email")).click();
+      wd.findElement(By.name("email")).clear();
+      wd.findElement(By.name("email")).sendKeys(user_email);
+      //wd.findElement(By.name("theform")).click();
+  }
+
+  protected void getContactCreationForm() {
+      wd.findElement(By.linkText("add new")).click();
+  }
+
+  protected void fillGroupForm(GruopData gruopData) {
+    wd.findElement(By.name("group_name")).click();
+    wd.findElement(By.name("group_name")).clear();
+    wd.findElement(By.name("group_name")).sendKeys(gruopData.getName());
+    wd.findElement(By.name("group_header")).click();
+    wd.findElement(By.name("group_header")).clear();
+    wd.findElement(By.name("group_header")).sendKeys(gruopData.getHeader());
+    wd.findElement(By.name("group_footer")).click();
+    wd.findElement(By.name("group_footer")).clear();
+    wd.findElement(By.name("group_footer")).sendKeys(gruopData.getFooter());
   }
 }
