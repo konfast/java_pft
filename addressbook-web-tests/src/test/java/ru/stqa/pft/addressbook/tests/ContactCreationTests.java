@@ -6,11 +6,11 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void ContactCreationTests() {
-    app.getContactCreationForm();
-    app.fillContactCreationForm("Svetlana", "Ivanova", "Ukraine", "111-11-11", "ivanova@localhost.com");
-    app.editAdressbookEntry();
-    app.submitContactCreationForm();
-    app.returnToHomePage();
+    app.getContactHelper().getContactCreationForm();
+    app.getContactHelper().fillContactCreationForm("Svetlana", "Ivanova", "Ukraine", "111-11-11", "ivanova@localhost.com");
+    app.getContactHelper().editAdressbookEntry();
+    app.getContactHelper().submitContactCreationForm();
+    app.getContactHelper().returnToHomePage();
   }
 
 }
