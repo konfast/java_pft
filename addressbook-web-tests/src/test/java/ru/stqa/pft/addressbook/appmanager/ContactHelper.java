@@ -3,54 +3,42 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ContactHelper {
-  private FirefoxDriver wd;
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void returnToHomePage() {
-    wd.findElement(By.linkText("home")).click();
+    click(By.linkText("home"));
   }
 
   public void submitContactCreationForm() {
-    wd.findElement(By.name("submit")).click();
+    click(By.name("submit"));
   }
 
   public void editAdressbookEntry() {
-    wd.findElement(By.name("theform")).click();
+    click(By.name("theform"));
   }
 
   public void fillContactCreationForm(String user_firstname, String user_lastname, String user_address, String user_phone, String user_email) {
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(user_firstname);
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(user_lastname);
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(user_address);
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(user_phone);
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(user_email);
-    //wd.findElement(By.name("theform")).click();
+    click(By.name("theform"));
+    type(By.name("firstname"),user_firstname);
+    type(By.name("lastname"),user_lastname);
+    type(By.name("address"),user_address);
+    type(By.name("home"),user_phone);
+    type(By.name("email"),user_email);
   }
 
   public void getContactCreationForm() {
-    wd.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 
   public void confirmContactDeletion() {
-    wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
+   click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
   public void selectContact() {
-    wd.findElement(By.name("selected[]")).click();
+    click(By.name("selected[]"));
   }
 }
