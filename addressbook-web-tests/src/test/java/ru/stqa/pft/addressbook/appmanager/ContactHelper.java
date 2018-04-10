@@ -49,4 +49,12 @@ public class ContactHelper extends HelperBase {
   public void summitContactModification() {
     click(By.name("update"));
   }
+
+  public void fillContactCreationForm1(String user_firstname, String user_lastname, String user_address, String user_phone, String user_email) {
+    type(By.name("firstname"),user_firstname);
+    type(By.name("lastname"),user_lastname);
+    type(By.name("address"),user_address);
+    type(By.name("home"),user_phone);
+    type(By.name("email"),user_email);
+  }
 }
