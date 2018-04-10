@@ -35,10 +35,18 @@ public class ContactHelper extends HelperBase {
   }
 
   public void confirmContactDeletion() {
-   click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
   public void selectContact() {
     click(By.name("selected[]"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));//дописать сюда как его инициировать
+  }
+
+  public void summitContactModification() {
+    click(By.name("update"));
   }
 }
