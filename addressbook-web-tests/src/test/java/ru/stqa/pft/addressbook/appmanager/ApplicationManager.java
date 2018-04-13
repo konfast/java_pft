@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -27,6 +28,8 @@ public class ApplicationManager {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     } else if(browser.equals(BrowserType.CHROME)) {
       wd = new ChromeDriver();
+    } else if(browser.equals(BrowserType.OPERA_BLINK)) {
+      wd = new OperaDriver();
     }
 
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
