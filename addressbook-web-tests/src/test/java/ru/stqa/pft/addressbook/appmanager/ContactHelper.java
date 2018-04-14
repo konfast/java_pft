@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
 
@@ -22,13 +23,12 @@ public class ContactHelper extends HelperBase {
     click(By.name("theform"));
   }
 
-  public void fillContactCreationForm(String user_firstname, String user_lastname, String user_address, String user_phone, String user_email) {
-    click(By.name("theform"));
-    type(By.name("firstname"),user_firstname);
-    type(By.name("lastname"),user_lastname);
-    type(By.name("address"),user_address);
-    type(By.name("home"),user_phone);
-    type(By.name("email"),user_email);
+  public void fillContactCreationForm(ContactData contactData) {
+    type(By.name("firstname"),contactData.getFirst_name());
+    type(By.name("lastname"),contactData.getLast_name());
+    type(By.name("address"),contactData.getUser_address());
+    type(By.name("home"),contactData.getUser_phone());
+    type(By.name("email"),contactData.getUser_email());
   }
 
   public void getContactCreationForm() {
@@ -49,13 +49,5 @@ public class ContactHelper extends HelperBase {
 
   public void summitContactModification() {
     click(By.name("update"));
-  }
-
-  public void fillContactCreationForm1(String user_firstname, String user_lastname, String user_address, String user_phone, String user_email) {
-    type(By.name("firstname"),user_firstname);
-    type(By.name("lastname"),user_lastname);
-    type(By.name("address"),user_address);
-    type(By.name("home"),user_phone);
-    type(By.name("email"),user_email);
   }
 }
