@@ -55,4 +55,17 @@ public class ContactHelper extends HelperBase {
   public void summitContactModification() {
     click(By.name("update"));
   }
+
+  public boolean isThereContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    getContactCreationForm();
+    fillContactCreationForm(contact, creation);
+    editAdressbookEntry();
+    submitContactCreationForm();
+
+
+  }
 }
