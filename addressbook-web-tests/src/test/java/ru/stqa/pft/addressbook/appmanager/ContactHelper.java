@@ -44,12 +44,14 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initContactModification() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void initContactModification(int index) {
+    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")).get(index).click();
+
   }
 
   public void summitContactModification() {
@@ -65,7 +67,6 @@ public class ContactHelper extends HelperBase {
     fillContactCreationForm(contact, creation);
     editAdressbookEntry();
     submitContactCreationForm();
-
 
   }
 
