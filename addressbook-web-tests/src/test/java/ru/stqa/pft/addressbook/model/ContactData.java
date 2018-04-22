@@ -15,8 +15,23 @@ public class ContactData {
   private final String user_email;
   private String group;
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return Objects.equals(first_name, that.first_name) &&
+            Objects.equals(last_name, that.last_name);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(first_name, last_name);
+  }
+
   public ContactData(String first_name, String last_name, String user_address, String user_phone, String user_email, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.first_name = first_name;
     this.last_name = last_name;
     this.user_address = user_address;
@@ -68,22 +83,6 @@ public class ContactData {
 
   public String getGroup() {
     return group;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(first_name, that.first_name) &&
-            Objects.equals(last_name, that.last_name);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, first_name, last_name);
   }
 
 }
