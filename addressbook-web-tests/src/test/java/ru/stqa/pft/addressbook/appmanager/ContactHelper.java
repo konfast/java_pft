@@ -27,11 +27,11 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactCreationForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"),contactData.getFirst_name());
-    type(By.name("lastname"),contactData.getLast_name());
-    type(By.name("address"),contactData.getUser_address());
-    type(By.name("home"),contactData.getUser_phone());
-    type(By.name("email"),contactData.getUser_email());
+    type(By.name("firstname"), contactData.getFirst_name());
+    type(By.name("lastname"), contactData.getLast_name());
+    type(By.name("address"), contactData.getUser_address());
+    type(By.name("home"), contactData.getUser_phone());
+    type(By.name("email"), contactData.getUser_email());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -53,7 +53,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void initContactModification(int index) {
-    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")).get(index).click();
 
   }
@@ -82,9 +81,17 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      ContactData contact = new ContactData(name, null, null, null, null, null);
+
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+
+
+      String first_name = cells.get(1).getText();
+      String last_name = cells.get(2).getText();
+
+      ContactData contact = new ContactData(last_name, first_name, null, null, null, null);
+
       contacts.add(contact);
+
     }
     return contacts;
   }

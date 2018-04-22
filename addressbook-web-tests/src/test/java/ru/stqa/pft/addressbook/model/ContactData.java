@@ -10,36 +10,7 @@ public class ContactData {
   private final String user_email;
   private String group;
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "first_name='" + first_name + '\'' +
-            ", last_name='" + last_name + '\'' +
-            ", user_address='" + user_address + '\'' +
-            ", user_phone='" + user_phone + '\'' +
-            ", user_email='" + user_email + '\'' +
-            ", group='" + group + '\'' +
-            '}';
-  }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return Objects.equals(first_name, that.first_name) &&
-            Objects.equals(last_name, that.last_name) &&
-            Objects.equals(user_address, that.user_address) &&
-            Objects.equals(user_phone, that.user_phone) &&
-            Objects.equals(user_email, that.user_email) &&
-            Objects.equals(group, that.group);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(first_name, last_name, user_address, user_phone, user_email, group);
-  }
 
   public ContactData(String first_name, String last_name, String user_address, String user_phone, String user_email, String group) {
     this.first_name = first_name;
@@ -48,6 +19,29 @@ public class ContactData {
     this.user_phone = user_phone;
     this.user_email = user_email;
     this.group = group;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return Objects.equals(first_name, that.first_name) &&
+            Objects.equals(last_name, that.last_name);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(first_name, last_name);
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "first_name='" + first_name + '\'' +
+            ", last_name='" + last_name + '\'' +
+            '}';
   }
 
   public String getFirst_name() {
