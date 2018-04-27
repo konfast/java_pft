@@ -68,7 +68,12 @@ public class ContactHelper extends HelperBase {
     fillContactCreationForm(contact, creation);
     editAdressbookEntry();
     submitContactCreationForm();
+  }
 
+  public void modifyContact(int index, ContactData contact) {
+    initContactModification(index);
+    fillContactCreationForm(contact, false);
+    summitContactModification();
   }
 
   public int getContactCount() {
