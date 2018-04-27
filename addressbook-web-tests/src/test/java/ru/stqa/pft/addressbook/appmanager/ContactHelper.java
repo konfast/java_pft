@@ -97,12 +97,12 @@ public class ContactHelper extends HelperBase {
       List<WebElement> cells = element.findElements(By.tagName("td"));
 
 
-      String first_name = cells.get(1).getText();
-      String last_name = cells.get(2).getText();
+      String last_name = cells.get(1).getText();
+      String first_name = cells.get(2).getText();
 
-      ContactData contact = new ContactData(id, last_name, first_name, null, null, null, null);
+      //ContactData contact = new ContactData().withId(id).withLast_name(last_name).withFirst_name(first_name);
 
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name));
 
     }
     return contacts;

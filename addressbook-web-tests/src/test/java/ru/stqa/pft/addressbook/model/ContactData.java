@@ -3,17 +3,55 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  public void setId(int id) {
+
+  private int id = Integer.MAX_VALUE;
+  private String first_name;
+  private String last_name;
+  private String user_address;
+  private String user_phone;
+  private String user_email;
+  private String group;
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
-  private int id;
-  private final String first_name;
-  private final String last_name;
-  private final String user_address;
-  private final String user_phone;
-  private final String user_email;
-  private String group;
+  public ContactData withFirst_name(String first_name) {
+    this.first_name = first_name;
+    return this;
+
+  }
+
+  public ContactData withLast_name(String last_name) {
+    this.last_name = last_name;
+    return this;
+
+  }
+
+  public ContactData withUser_address(String user_address) {
+    this.user_address = user_address;
+    return this;
+
+  }
+
+  public ContactData withUser_phone(String user_phone) {
+    this.user_phone = user_phone;
+    return this;
+
+  }
+
+  public ContactData withUser_email(String user_email) {
+    this.user_email = user_email;
+    return this;
+
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -28,26 +66,6 @@ public class ContactData {
   public int hashCode() {
 
     return Objects.hash(first_name, last_name);
-  }
-
-  public ContactData(String first_name, String last_name, String user_address, String user_phone, String user_email, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.user_address = user_address;
-    this.user_phone = user_phone;
-    this.user_email = user_email;
-    this.group = group;
-  }
-
-  public ContactData(int id, String first_name, String last_name, String user_address, String user_phone, String user_email, String group) {
-    this.id = id;
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.user_address = user_address;
-    this.user_phone = user_phone;
-    this.user_email = user_email;
-    this.group = group;
   }
 
   @Override

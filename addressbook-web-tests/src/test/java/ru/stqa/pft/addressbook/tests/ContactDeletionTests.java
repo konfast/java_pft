@@ -11,7 +11,7 @@ public class ContactDeletionTests extends TestBase {
   @Test
   public void Delete() {
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("Svetlana", "Ivanova", "Ukraine", "111-11-11", "ivanova@localhost.com", "test1"), true);
+      app.contact().create(new ContactData().withFirst_name("Svetlana").withLast_name("Ivanova").withUser_address("Ukraine").withUser_phone("111-11-11").withUser_email("ivanova@localhost.com").withGroup("test1"), true);
       app.goTo().homePage();
     }
     List<ContactData> before = app.contact().list();
