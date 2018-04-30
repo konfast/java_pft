@@ -48,17 +48,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-  }
-
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
-  }
-
-  public void initContactModification(int index) {
-    wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")).get(index).click(); //нужно реализовать по id
-
   }
 
   public void initContactModificationById(int id) {
@@ -86,12 +77,6 @@ public class ContactHelper extends HelperBase {
     summitContactModification();
   }
 
-  public void delete(int index) {
-    selectContact(index);
-    confirmContactDeletion();
-    choiceConfirmation();
-  }
-
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     confirmContactDeletion();
@@ -100,26 +85,6 @@ public class ContactHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
-  }
-
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
-
-    for (WebElement element : elements) {
-
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-
-
-      String last_name = cells.get(1).getText();
-      String first_name = cells.get(2).getText();
-
-      contacts.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name));
-
-    }
-    return contacts;
   }
 
   public Set<ContactData> all() {

@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
-  @Test(enabled = false)
+  @Test
   public void GroupCreationTests() {
 
     app.goTo().groupPage();
