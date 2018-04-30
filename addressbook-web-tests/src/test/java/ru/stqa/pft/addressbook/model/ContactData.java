@@ -63,7 +63,8 @@ public class ContactData {
             '}';
   }
 
-  public int getId() { return id; }
+  public int getId() {
+    return id; }
 
   public String getFirst_name() {
     return first_name;
