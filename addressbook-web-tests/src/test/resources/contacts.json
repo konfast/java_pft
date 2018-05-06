@@ -1,0 +1,23 @@
+[
+  {
+    "first_name": "Svetlana 0",
+    "last_name": "Ivanova 0",
+    "user_address": "Ukraine 0",
+    "user_phone": "111-11-11 0",
+    "user_email": "ivanova@localhost.com 0"
+  },
+  {
+    "first_name": "Svetlana 1",
+    "last_name": "Ivanova 1",
+    "user_address": "Ukraine 1",
+    "user_phone": "111-11-11 1",
+    "user_email": "ivanova@localhost.com 1"
+  },
+  {
+    "first_name": "Svetlana 2",
+    "last_name": "Ivanova 2",
+    "user_address": "Ukraine 2",
+    "user_phone": "111-11-11 2",
+    "user_email": "ivanova@localhost.com 2"
+  }
+]
