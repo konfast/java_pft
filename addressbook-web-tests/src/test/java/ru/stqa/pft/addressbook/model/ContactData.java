@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
@@ -45,9 +44,9 @@ public class ContactData {
   @Transient
   private String group;
 
-  @Column(name = "home")
+  @Column(name = "photo")
   @Type(type = "text")
-  private String homePhone;
+  private String photo;
 
   @Column(name = "mobile")
   @Type(type = "text")
@@ -80,17 +79,12 @@ public class ContactData {
     return this;
   }
 
-  @Column(name = "photo")
-  @Type(type = "text")
-  private String photo;
-
   public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
     return this;
   }
 
   public String getAllEmails() {
-
     return allEmails;
   }
 
@@ -100,7 +94,6 @@ public class ContactData {
   }
 
   public String getAllPhones() {
-
     return allPhones;
   }
 
@@ -115,7 +108,6 @@ public class ContactData {
   }
 
   public String getEmail2() {
-
     return email2;
   }
 
@@ -123,10 +115,10 @@ public class ContactData {
     return email3;
   }
 
-  public ContactData withHomePhone(String homePhone) {
+  /*public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
-  }
+  }*/
 
   public ContactData withMobilePhone(String mobilePhone) {
     this.mobilePhone = mobilePhone;
@@ -138,9 +130,9 @@ public class ContactData {
     return this;
   }
 
-  public String getHomePhone() {
+  /*public String getHomePhone() {
     return homePhone;
-  }
+  }*/
 
   public String getMobilePhone() {
     return mobilePhone;
@@ -156,40 +148,33 @@ public class ContactData {
   }
 
   public ContactData withFirst_name(String first_name) {
-
     this.first_name = first_name;
     return this;
-
   }
 
   public ContactData withLast_name(String last_name) {
     this.last_name = last_name;
     return this;
-
   }
 
   public ContactData withUser_address(String user_address) {
     this.user_address = user_address;
     return this;
-
   }
 
   public ContactData withUser_phone(String user_phone) {
     this.user_phone = user_phone;
     return this;
-
   }
 
   public ContactData withUser_email(String user_email) {
     this.user_email = user_email;
     return this;
-
   }
 
   public ContactData withGroup(String group) {
     this.group = group;
     return this;
-
   }
 
   @Override

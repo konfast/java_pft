@@ -149,7 +149,7 @@ public class ContactHelper extends HelperBase {
 
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirst_name(firstname).withLast_name(lastname).withUser_address(address).
-            withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withUser_email(email).withEmail2(email2).withEmail3(email3);
+            withUser_phone(home).withMobilePhone(mobile).withWorkPhone(work).withUser_email(email).withEmail2(email2).withEmail3(email3);
 
   }
 }
