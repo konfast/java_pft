@@ -29,7 +29,7 @@ public class ContactCreationTests extends TestBase {
       while (line != null) {
         String[] split = line.split(";");
         list.add(new Object[] {new ContactData().withFirst_name(split[0]).withLast_name(split[1]).withPhoto(new File("src/test/resources/bear.png")).
-                withUser_address(split[2]).withUser_phone(split[3]).withUser_email(split[4]).withGroup("test1")});
+                withUser_address(split[2]).withUser_phone(split[3]).withUser_email(split[4]).inGroup(new GroupData().withName("test1"))});
         line = reader.readLine();
       }
       return list.iterator();
@@ -53,11 +53,12 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void ContactCreationTests(ContactData contact) {
-    Contacts before = app.db().contacts();
+      Contacts before = app.db().contacts();
       app.goTo().groupPage();
       Groups groups = app.db().groups();
-      GroupData selectGroup = groups.iterator().next();
-      contact = contact.withGroup(selectGroup.getName()).withMobilePhone("").withWorkPhone("").withEmail2("").withEmail3("");
+      //GroupData selectGroup = groups.iterator().next();
+      contact = contact.withMobilePhone("").withWorkPhone("").withEmail2("").withEmail3("").
+              inGroup(groups.iterator().next());
       app.contact().create(contact, true);
       app.goTo().homePage();
       assertThat(app.contact().getContactCount(), equalTo(before.size() + 1));
@@ -71,7 +72,7 @@ public class ContactCreationTests extends TestBase {
   public void testBadContactCreation() {
     Contacts before = app.db().contacts();
     ContactData contact = new ContactData().withFirst_name("Svetlana'").withLast_name("Ivanova").withUser_address("Ukraine").
-            withUser_phone("111-11-11").withUser_email("ivanova@localhost.com").withGroup("test1");
+            withUser_phone("111-11-11").withUser_email("ivanova@localhost.com").inGroup(new GroupData().withName("test1"));
     app.contact().create(contact, true);
     app.goTo().homePage();
     assertThat(app.contact().getContactCount(), equalTo(before.size()));
