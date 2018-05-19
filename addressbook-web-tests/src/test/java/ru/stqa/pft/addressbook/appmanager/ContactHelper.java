@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -155,4 +157,16 @@ public class ContactHelper extends HelperBase {
             withUser_phone(home).withMobilePhone(mobile).withWorkPhone(work).withUser_email(email).withEmail2(email2).withEmail3(email3);
 
   }
-}
+/*
+  public void adding() {
+    wd.findElement(By.xpath("//input[@name='add']")).click();
+  }
+
+  public void myContact() {
+    List<WebElement> elements = wd.findElements(By.xpath("//input[@name='selected[]']"));
+    for (WebElement element : elements) {
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+    }*/
+
+  }
+
