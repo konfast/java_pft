@@ -36,22 +36,24 @@ public class HttpSession {
     post.setEntity(new UrlEncodedFormEntity(params));
     CloseableHttpResponse response = httpclient.execute(post);
     String body = geTextFrom(response);
-    return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+    return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", username));
   }
 
-  private String geTextFrom(CloseableHttpResponse response) throws IOException{
+  private String geTextFrom(CloseableHttpResponse response) throws IOException {
     try {
       return EntityUtils.toString(response.getEntity());
     } finally {
       response.close();
+    }
+
   }
-  
-}
 
   public boolean isLoggedInAs(String username) throws IOException {
     HttpGet get = new HttpGet(app.getProperty("web.baseURL") + "/index.php");
     CloseableHttpResponse response = httpclient.execute(get);
     String body = geTextFrom(response);
-    return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+    //return body.contains(String.format("<a href=\"\\/mantisbt-2.14.0\\/account_page.php\">%s</a>", username));
+    return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", username));
+
   }
 }
