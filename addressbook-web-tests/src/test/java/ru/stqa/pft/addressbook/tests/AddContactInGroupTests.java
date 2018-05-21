@@ -28,8 +28,9 @@ public class AddContactInGroupTests extends TestBase {
 
     Groups group = app.db().groups();
     System.out.println(group);
-
-    /*for (int i = 0; i < contact.size(); i++) {
+    Contacts contact = app.db().contacts();
+    System.out.println(contact);
+    for (int i = 0; i < contact.size(); i++) {
       Set<GroupData> result = contact.iterator().next().getGroups();
       System.out.println(result);
       if (result.size() < group.size()) {
