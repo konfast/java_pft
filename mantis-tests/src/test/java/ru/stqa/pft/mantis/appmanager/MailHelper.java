@@ -17,24 +17,24 @@ public class MailHelper {
 
   public MailHelper(ApplicationManager app) {
     this.app = app;
-    wiser = new Wiser();
+    wiser = new Wiser(1025);
   }
 
-  public List<MailMessage> waitForMail(int count, long timeout) throws MessagingException, IOException {
+  public List<MailMessage> waitForMail(int count, long timeout) {
     long start = System.currentTimeMillis();
     while (System.currentTimeMillis() < start + timeout) {
       if (wiser.getMessages().size() >= count) {
         return wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
       }
       try {
-        Thread.sleep(1000);
+        Thread.sleep(10000);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
     }
     throw new Error("No mail :(");
   }
-  public static MailMessage toModelMail (WiserMessage m) throws javax.mail.MessagingException {
+  public static MailMessage toModelMail (WiserMessage m) {
     try {
       MimeMessage mm = m.getMimeMessage();
       return new MailMessage(mm.getAllRecipients()[0].toString(), (String) mm.getContent());

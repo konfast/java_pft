@@ -28,8 +28,7 @@ public class AddContactInGroupTests extends TestBase {
 
     Groups group = app.db().groups();
     System.out.println(group);
-    Contacts contact = app.db().contacts();
-    System.out.println(contact);
+    ContactData contact = new ContactData();
     for (int i = 0; i < contact.size(); i++) {
       Set<GroupData> result = contact.iterator().next().getGroups();
       System.out.println(result);
@@ -41,8 +40,8 @@ public class AddContactInGroupTests extends TestBase {
       }
       //set1.removeAll(set2)
     }*/
-  }
-}
+
+
 
 
 
