@@ -20,9 +20,6 @@ public class RegistrationHelper extends HelperBase{
     wd.get(confirmationLinc);
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
-    //click(By.cssSelector("input[value = 'Update User']"));
-    //click(By.xpath("//button/span[@class='bigger-110]");
-    //click(By.xpath("//span[contains(text(),'Изменить учетную запись')]"));
     click(By.xpath("//button/span[contains(text(),'Изменить учетную запись')]"));
 
 

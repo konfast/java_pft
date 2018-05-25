@@ -5,11 +5,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class AddContactInGroupTests extends TestBase {
 
@@ -26,20 +24,33 @@ public class AddContactInGroupTests extends TestBase {
       app.goTo().homePage();
     }
 
-    Groups group = app.db().groups();
-    System.out.println(group);
-    ContactData contact = new ContactData();
-    for (int i = 0; i < contact.size(); i++) {
-      Set<GroupData> result = contact.iterator().next().getGroups();
-      System.out.println(result);
-      if (result.size() < group.size()) {
-        contact.iterator().next().inGroup(group.iterator().next());
-        //group.stream().map((c) -> new Object[] {c}).collect(Collectors.toSet()).iterator();
+    Groups groups = app.db().groups();
+    Contacts contacts = app.db().contacts();
 
-        return (group.removeAll(result);
+    for (ContactData contact : contacts) {
+      int id = contact.getId();
+      Set<GroupData> groupOfContactSet = contact.getGroups();
+      groups.removeAll(groupOfContactSet);
+
+      if (!groups.isEmpty()) {
+        int index = groups.iterator().next().getId();//получаю id первой попавшейся свободной группы
+        app.contact().addInSelectGroup(id,index);
+        break;
+
+      } else {
+        GroupData newGroup = new GroupData().withName("newTestGroup'");
+        app.group().create(newGroup);
+
+        contact.inGroup(newGroup);
       }
-      //set1.removeAll(set2)
-    }*/
+    }
+  }
+}
+
+
+
+
+
 
 
 
