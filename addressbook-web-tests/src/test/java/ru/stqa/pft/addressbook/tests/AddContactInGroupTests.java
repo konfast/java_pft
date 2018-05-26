@@ -1,18 +1,23 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
-
 import java.io.File;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class AddContactInGroupTests extends TestBase {
 
-  @Test
-  public void testsAddContactInGroup() {
+  @BeforeMethod
+  public void ensurePrecondition() {
     if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData().withFirst_name("Svetlana").withLast_name("Ivanova").
               withPhoto(new File("src/test/resources/bear.png")).inGroup(new GroupData().withName("test1")).withUser_address("Ukraine").
@@ -23,29 +28,40 @@ public class AddContactInGroupTests extends TestBase {
       app.group().create(new GroupData().withName("test5").withHeader("myHeader").withFooter("myFooter"));
       app.goTo().homePage();
     }
+  }
 
-    Groups groups = app.db().groups();
+  @Test
+  public void testsAddContactInGroup() {
+
+    Groups group = app.db().groups();
     Contacts contacts = app.db().contacts();
+    ContactData contact = contacts.iterator().next();
+    int id = contact.getId();
+    Set<GroupData> groupOfContactSet = contact.getGroups();
 
-    for (ContactData contact : contacts) {
-      int id = contact.getId();
-      Set<GroupData> groupOfContactSet = contact.getGroups();
-      groups.removeAll(groupOfContactSet);
-
-      if (!groups.isEmpty()) {
-        int index = groups.iterator().next().getId();//получаю id первой попавшейся свободной группы
-        app.contact().addInSelectGroup(id,index);
-        break;
+      if (groupOfContactSet.size() < group.size()) {
+        group.removeAll(groupOfContactSet);
+        int index = group.iterator().next().getId();
+        app.contact().addInSelectGroup(id, index);
+        app.goTo().homePage();
 
       } else {
-        GroupData newGroup = new GroupData().withName("newTestGroup'");
-        app.group().create(newGroup);
+        GroupData newGroup = new GroupData();
+        app.goTo().groupPage();
+        long now = System.currentTimeMillis();
+        app.group().create(newGroup.withName(String.format("newGroup%s", now)));
 
-        contact.inGroup(newGroup);
+        int index1 = newGroup.getId();
+        app.goTo().homePage();
+        app.contact().addInSelectGroup(id, index1);
+        app.goTo().homePage();
+
       }
-    }
   }
 }
+
+
+
 
 
 

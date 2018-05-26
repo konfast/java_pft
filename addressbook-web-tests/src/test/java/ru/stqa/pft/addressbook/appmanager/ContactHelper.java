@@ -157,7 +157,7 @@ public class ContactHelper extends HelperBase {
   public void addInSelectGroup(int id,int index) {
     selectContactById(id);
     Select dropdown =  new Select(wd.findElement(By.xpath("//select[@name='to_group']")));
-    dropdown.selectByIndex(index);
+    dropdown.selectByValue(Integer.toString(index));
     wd.findElement(By.xpath("//input[@name='add']")).click();
   }
 
