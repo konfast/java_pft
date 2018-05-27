@@ -1,7 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -11,10 +9,7 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.io.File;
 import java.util.Set;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-public class AddContactInGroupTests extends TestBase {
+public class DeleteContactFromGroupTests extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition() {
@@ -31,7 +26,8 @@ public class AddContactInGroupTests extends TestBase {
   }
 
   @Test
-  public void testsAddContactInGroup() {
+
+  public void testDeleteContactFromGroup() {
 
     Groups group = app.db().groups();
     Contacts contacts = app.db().contacts();
@@ -39,37 +35,12 @@ public class AddContactInGroupTests extends TestBase {
     int id = contact.getId();
     Set<GroupData> groupOfContactSet = contact.getGroups();
 
-    if (groupOfContactSet.size() < group.size()) {
-        group.removeAll(groupOfContactSet);
-        int index = group.iterator().next().getId();
-        app.contact().addInSelectGroup(id, index);
-        app.goTo().homePage();
+    if (!groupOfContactSet.isEmpty()) {
+      int index = groupOfContactSet.iterator().next().getId();
+      app.contact().deleteFromSelectGroup(id, index);
+      app.goTo().homePage();
 
-      }
-      else {
-        GroupData newGroup = new GroupData();
-        app.goTo().groupPage();
-        long now = System.currentTimeMillis();
-        app.group().create(newGroup.withName(String.format("newGroup%s", now)));
-        int index = group.iterator().next().getId();
-        app.goTo().homePage();
-        app.contact().addInSelectGroup(id, index);
-        app.goTo().homePage();
-
-      }
+    }
   }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
