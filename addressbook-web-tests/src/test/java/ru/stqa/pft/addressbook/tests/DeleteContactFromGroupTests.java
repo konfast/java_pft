@@ -1,13 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+
 import java.io.File;
 import java.util.Set;
 
@@ -44,12 +43,16 @@ public class DeleteContactFromGroupTests extends TestBase {
       int index = groupOfContactSet.iterator().next().getId();
       app.contact().deleteFromSelectGroup(id, index);
       app.goTo().homePage();
-
     }
+
     Contacts contacts1 = app.db().contacts();
     ContactData contactnew = contacts1.stream().filter((c) -> c.equals(contact)).findFirst().get();
     Set<GroupData> groupOfContactSet1 = contactnew.getGroups();
     assertThat(groupOfContactSet1.size(), equalTo(groupOfContactSet.size() - 1));
+
+    GroupData groupData2 = groupOfContactSet.stream().filter(groupData -> !(groupOfContactSet1.contains(groupData))).findFirst().get();
+    assertThat(groupOfContactSet1, equalTo(((Groups) groupOfContactSet).without(groupData2)));
+
   }
 
 }
