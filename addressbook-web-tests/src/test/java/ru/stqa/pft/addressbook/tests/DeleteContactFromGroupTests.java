@@ -6,10 +6,8 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
-
 import java.io.File;
 import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -25,6 +23,11 @@ public class DeleteContactFromGroupTests extends TestBase {
 
     if (app.db().groups().size() == 0) {
       app.group().create(new GroupData().withName("test5").withHeader("myHeader").withFooter("myFooter"));
+      app.goTo().homePage();
+    }
+
+    if (app.db().contacts().iterator().next().getGroups().size() == 0) {
+      app.contact().addInSelectGroup(app.db().contacts().iterator().next().getId(), app.db().groups().iterator().next().getId());
       app.goTo().homePage();
     }
   }
