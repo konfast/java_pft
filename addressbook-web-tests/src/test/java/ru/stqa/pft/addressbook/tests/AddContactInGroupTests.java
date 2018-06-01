@@ -61,7 +61,6 @@ public class AddContactInGroupTests extends TestBase {
     assertThat(groupOfContactSet1.size(), equalTo(groupOfContactSet.size() + 1));
 
     GroupData groupData1 = groupOfContactSet1.stream().filter(groupData -> !(groupOfContactSet.contains(groupData))).findFirst().get();
-    groupOfContactSet.add(groupData1);
     assertThat(groupOfContactSet1, equalTo(((Groups) groupOfContactSet).withAdded(groupData1)));
 
   }
