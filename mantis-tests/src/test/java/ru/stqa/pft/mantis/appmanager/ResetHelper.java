@@ -7,8 +7,8 @@ import ru.stqa.pft.mantis.model.Users;
 
 public class ResetHelper extends HelperBase {
 
-  public ResetHelper(WebDriver wd) {
-    super(wd);
+  public ResetHelper(ApplicationManager app) {
+    super(app);
   }
 
   public void start(String username, String password ) {
@@ -23,7 +23,11 @@ public class ResetHelper extends HelperBase {
   public void getUsersList(int id) {
     wd.findElement(By.xpath("//li/a[@href=\"/mantisbt-2.14.0/manage_overview_page.php\"]")).click();
     wd.findElement(By.xpath("//ul/li/a[@href=\"/mantisbt-2.14.0/manage_user_page.php\"]")).click();
-    wd.findElement(By.xpath("//tr/td/a[@href=\"manage_user_edit_page.php?user_id='" + id + "'\"]")).click();
+    wd.findElement(By.xpath("//tr/td/a[@href=\"manage_user_edit_page.php?user_id=" + id + "\"]")).click();
 
+  }
+
+  public void resetUserPassword() {
+    wd.findElement(By.xpath("//span/input[@value='Сбросить пароль']")).click();
   }
 }

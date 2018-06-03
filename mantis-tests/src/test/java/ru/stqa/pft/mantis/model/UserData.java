@@ -1,10 +1,28 @@
 package ru.stqa.pft.mantis.model;
 
+import org.hibernate.annotations.Table;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
+@javax.persistence.Table(name = "mantis_user_table")
 public class UserData {
+
+  @Id
+  @Column(name = "id")
   private int id;
+
+  @Column(name = "username")
   private String username;
+
+  @Column(name = "email")
+  private String email;
+
+  @Column(name = "password")
+  private String password;
 
   @Override
   public String toString() {
@@ -27,12 +45,8 @@ public class UserData {
 
   @Override
   public int hashCode() {
-
     return Objects.hash(id, username, email);
   }
-
-  private String email;
-  private String password;
 
   public int getId() {
     return id;

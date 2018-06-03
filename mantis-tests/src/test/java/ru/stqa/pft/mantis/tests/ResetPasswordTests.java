@@ -22,7 +22,9 @@ public class ResetPasswordTests extends TestBase {
     UserData user1 = app.db().users().stream().filter((u) -> !u.equals(admin.withId(1).
             withUsername("administrator").withEmail("root@localhost"))).collect(Collectors.toList()).iterator().next();
     int id = user1.getId();
+    
     app.reset().getUsersList(id);
+    app.reset().resetUserPassword();
 
   }
 }

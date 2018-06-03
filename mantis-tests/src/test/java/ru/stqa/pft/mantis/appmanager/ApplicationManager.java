@@ -33,8 +33,6 @@ public class ApplicationManager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    DbHelper = new DbHelper();
-
     if(browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
     } else if(browser.equals(BrowserType.CHROME)) {
@@ -42,11 +40,6 @@ public class ApplicationManager {
     } else if(browser.equals(BrowserType.OPERA_BLINK)) {
       wd = new OperaDriver();
     }
-
-    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseURL"));
-    resetHelper = new ResetHelper(wd);
-
   }
 
   public void stop() {
@@ -87,9 +80,6 @@ public class ApplicationManager {
         wd = new OperaDriver();
       }
 
-      wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-      wd.get(properties.getProperty("web.baseURL"));
-
     }
     return wd;
   }
@@ -109,10 +99,16 @@ public class ApplicationManager {
   }
 
   public ResetHelper reset() {
-      return resetHelper;
+    if (resetHelper == null) {
+      resetHelper = new ResetHelper(this);
+    }
+    return resetHelper;
   }
 
   public DbHelper db() {
+    if (DbHelper == null) {
+      DbHelper = new DbHelper(this);
+    }
     return DbHelper;
   }
 
