@@ -1,9 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.mantis.model.UserData;
-import ru.stqa.pft.mantis.model.Users;
 
 public class ResetHelper extends HelperBase {
 
@@ -30,4 +27,13 @@ public class ResetHelper extends HelperBase {
   public void resetUserPassword() {
     wd.findElement(By.xpath("//span/input[@value='Сбросить пароль']")).click();
   }
+
+  public void finish(String confirmationLink, String password) {
+    wd.get(confirmationLink);
+    type(By.name("password"), password);
+    type(By.name("password_confirm"), password);
+    click(By.xpath("//button/span[contains(text(),'Изменить учетную запись')]"));
+
+  }
+
 }
