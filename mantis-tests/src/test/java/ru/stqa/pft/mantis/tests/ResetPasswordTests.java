@@ -32,13 +32,15 @@ public class ResetPasswordTests extends TestBase {
             withUsername("administrator").withEmail("root@localhost"))).collect(Collectors.toList()).iterator().next();
     int id = user1.getId();
     String email = user1.getEmail();
+    String name = user1.getUsername();
 
     app.reset().getUsersList(id);
     app.reset().resetUserPassword();
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.reset().finish(confirmationLink, "password");
-    assertTrue(app.newSession().login(user, password));
+    String password1 = "password";
+    app.reset().finish(confirmationLink, password1);
+    assertTrue(app.newSession().login(name, password1));
 
   }
 
