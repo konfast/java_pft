@@ -5,6 +5,7 @@ import ru.stqa.pft.mantis.model.UserData;
 import ru.stqa.pft.mantis.model.Users;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.stream.Collectors;
 
 public class ResetPasswordTests extends TestBase {

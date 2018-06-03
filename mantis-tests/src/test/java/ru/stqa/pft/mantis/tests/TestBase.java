@@ -14,7 +14,7 @@ public class TestBase {
 
   @BeforeSuite
   public void setUp() throws Exception {
-    app.init();
+     app.init();
   }
 
 

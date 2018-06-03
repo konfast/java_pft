@@ -1,13 +1,14 @@
 package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.mantis.model.UserData;
 import ru.stqa.pft.mantis.model.Users;
 
 public class ResetHelper extends HelperBase {
 
-  public ResetHelper(ApplicationManager app) {
-    super(app);
+  public ResetHelper(WebDriver wd) {
+    super(wd);
   }
 
   public void start(String username, String password ) {
