@@ -21,6 +21,8 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private ResetHelper resetHelper;
+  private DbHelper DbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -90,4 +92,16 @@ public class ApplicationManager {
     }
     return jamesHelper;
   }
+
+  public ResetHelper reset() {
+    if (resetHelper == null) {
+      resetHelper = new ResetHelper(this);
+    }
+    return resetHelper;
+  }
+
+  public DbHelper db() {
+    return DbHelper;
+  }
+
 }
