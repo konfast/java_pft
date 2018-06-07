@@ -1,0 +1,44 @@
+import org.gradle.api.tasks.testing.Test
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.testng:testng:6.14.2'
+    compile 'org.seleniumhq.selenium:selenium-java:3.11.0'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.hamcrest:java-hamcrest:2.0.0.0'
+    compile 'commons-net:commons-net:3.4'
+    compile 'org.subethamail:subethasmtp:3.1.7'
+    compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.5'
+    compile 'mysql:mysql-connector-java:8.0.11'
+    compile 'org.hibernate:hibernate-core:5.1.0.Final'
+    compile 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
+
+}
+
+buildscript{
+    repositories{
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'no.nils:wsdl2java:0.10'
+    }
+}
+apply plugin: 'no.nils.wsdl2java'
+
+wsdl2java {
+    generatedWsdlDir = file("src/main/java")  // target directory for generated source coude
+    wsdlDir = file("src/main/resources") // define to support incremental build
+    wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
+                          ['src/main/resources/geoipservice.wsdl'],
+
+    ]
+
+}
+
+
