@@ -26,11 +26,11 @@ public class TestBase {
     BigInteger resolved = BigInteger.valueOf(80);
     BigInteger closed = BigInteger.valueOf(90);
     return status.equals(resolved) || status.equals(closed);
-    
+
   }
 
   public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
-    if (isIssueOpen(issueId) == true) {
+    if (isIssueOpen(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
     }
   }
