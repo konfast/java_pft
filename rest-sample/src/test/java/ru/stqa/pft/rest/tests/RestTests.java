@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestTests {
+public class RestTests{
 
   @Test
   public void testCreateIssue() throws IOException {
@@ -37,7 +37,7 @@ public class RestTests {
   }
 
   private Executor getExecutor() {
-    return Executor.newInstance().auth("c221a6dc570d26eff1991649048b49c5", "");
+    return Executor.newInstance().auth("2947a3a132a5dbdd9c632a28c5e61cd5", "");
 
   }
 

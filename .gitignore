@@ -14,3 +14,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 *.log
+rest-sample/out/test/classes/ru/stqa/pft/rest/appmanager/RestHelper$1.class
+rest-sample/out/test/classes/ru/stqa/pft/rest/appmanager/RestHelper.class
+rest-sample/out/test/classes/ru/stqa/pft/rest/appmanager/ApplicationManager.class
+rest-sample/out/test/classes/ru/stqa/pft/rest/tests/Issue.class
