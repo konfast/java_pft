@@ -26,7 +26,7 @@ public class TestBase {
 
 
   protected static final ApplicationManager app
-          = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+          = new ApplicationManager(System.getProperty("browser", BrowserType.OPERA_BLINK));
 
   @BeforeSuite
   public void setUp() throws Exception {
